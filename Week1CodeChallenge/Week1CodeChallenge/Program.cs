@@ -10,7 +10,7 @@ namespace Week1CodeChallenge
     {
         static void Main(string[] args)
         {
-            //calling FizzBuzz 0-20
+            //call FizzBuzz for 0-20
             for (int i = 0; i <= 20; i++)
             {
                 Console.WriteLine(FizzBuzz(i));
@@ -18,22 +18,50 @@ namespace Week1CodeChallenge
             //add a line break in the console window for readability
             Console.WriteLine();
 
-            //calling FizzBuzz 92-79
+
+            //call FizzBuzz for 92-79
             for (int i = 92; i >= 79; i--)
             {
                 Console.WriteLine(FizzBuzz(i));
             }
             Console.WriteLine();
 
-            //calling Yodaizer with 3 words to test *extra credit*
-            Console.WriteLine(Yodaizer("I like code a whole hell of a lot"));
+
+            //call Yodaizer, test *extra credit*
             Console.WriteLine(Yodaizer("I like code"));
             Console.WriteLine();
 
-            //Call TextStats function
+
+            //Call TextStats function, includes *extra credit* modification
             TextStats("This function shows some stats of this text.  It counts the number of characters, words, vowels, consonants, and special characters!  And for some superextraduper extra credit, it'll even display the longest word, second longest word, and shortest word.");
             Console.WriteLine();
 
+
+            //Call IsPrime function only on odd numbers
+            for (int i = 1; i <= 25; i++)
+            {
+                //check for odd numbers
+                if (i % 2 != 0)
+                {
+                    //check to see if current number in loop is prime
+                    bool prime = IsPrime(i);
+                    //if it is prime (true)
+                    if (prime)
+                    {
+                        Console.WriteLine(i + " is a prime number");
+                    }
+                    else
+                    {
+                        Console.WriteLine(i);
+                    }
+                }
+            }
+            Console.WriteLine();
+
+
+            //Call DashInsert
+            Console.WriteLine(DashInsert(454793));
+            Console.WriteLine(DashInsert(8675309));
 
 
             //keep console open
@@ -44,7 +72,7 @@ namespace Week1CodeChallenge
         /// Function used for testing what numbers are divisable by 3, 5, and both 3 and 5.
         /// </summary>
         /// <param name="number">number to test</param>
-        /// <returns>test result, Buzz for 3, Fizz for 5, FizzBuzz for 3 and 5, input number otherwise</returns>
+        /// <returns>return Buzz for 3, Fizz for 5, FizzBuzz for 3 and 5, return input number otherwise</returns>
         public static string FizzBuzz(int number)
         {
             if ((number % 3 == 0) && (number % 5 == 0))
@@ -67,62 +95,61 @@ namespace Week1CodeChallenge
         /// If 3 words are given, then "last word, first word + second word" returned
         /// </summary>
         /// <param name="text">string of text</param>
-        /// <returns>string, words reversed</returns>
+        /// <returns>words reversed</returns>
         public static string Yodaizer(string text)
         {
-            //string to hold reversed words
+            //empty string to hold reversed words
             string reverseText = string.Empty;
-            //create new list object, used to reverse words
-            List<string> stringWords = new List<string>();
-            //split text string into words and put into List array
-            stringWords = text.Split(' ').ToList();
+            //split up input string and convert to a List of words
+            List<string> stringWords = text.Split(' ').ToList();
             
             //if input string contains only 3 words, returns as "2, 0 + 1"
             if (stringWords.Count == 3)
             {
                 return (stringWords[2] + ", " + stringWords[0] + " " + stringWords[1]);
             }else
-            //otherwise reverse words and concatenate back into a string
+            //otherwise reverse word order and...
             stringWords.Reverse();
+            //loop through reversed List array and turn back into a string
             for (int i = 0; i < stringWords.Count; i++)
             {
                 reverseText += stringWords[i] + " ";
             }
-            //return orginal text now reversed w/ empty space at end of string removed
+            //return orginal text now reversed (w/ empty space at end of string removed by Trim)
             return reverseText.Trim();
         }
 
         /// <summary>
-        /// Runs several differnt stats on input text string
+        /// Runs several differnt stats on input text string:
+        /// Number of characters
+        /// Number of words
+        /// Number of vowels
+        /// Number of consonants
+        /// Number of special characters
+        /// Longest word
+        /// Second longest word
+        /// Shortest word
         /// </summary>
-        /// <param name="input">string of text</param>
+        /// <param name="input">stats</param>
         public static void TextStats(string input)
         {
-            //First output the original string
+            //***First output the original string
             Console.WriteLine(input);
 
-
-
-            //Output number of characters
+            //***Output number of characters
             Console.WriteLine("Number of characters: " + input.Length);
 
-
-
-            //Output number of words
-            //First split string into an array
-            string[] wordCount = input.Split(' ');
-            //Turn string array into a List
-            List<string> wordCountList = wordCount.ToList();
-            //Remove any empty indexes that came from a double space between sentences in original text  *******
+            //***Output number of words
+            //split up input string and convert to a List of words
+            List<string> wordCountList = input.Split(' ').ToList();
+            //Remove any empty indexes in List that came from a double space (from between sentences in original text)  *******
             for (int i = 0; i < wordCountList.Count; i++)
             {
                 wordCountList.Remove("");
             }
             Console.WriteLine("Number of words: " + wordCountList.Count);
 
-
-
-            //Count number of vowels
+            //***Output number of vowels
             int vowelCounter = 0;
             for (int i = 0; i < input.Length; i++)
             {
@@ -134,9 +161,7 @@ namespace Week1CodeChallenge
             }
             Console.WriteLine("Number of vowels: " + vowelCounter);
 
-
-
-            //Count number of consonants
+            //***Output number of consonants
             int consonantCounter = 0;
             for (int i = 0; i < input.Length; i++)
             {
@@ -148,9 +173,7 @@ namespace Week1CodeChallenge
             }
             Console.WriteLine("Number of consonants: " + consonantCounter);
 
-
-
-            //Count number of special characters
+            //***Output number of special characters
             int specialCharacterCounter = 0;
             for (int i = 0; i < input.Length; i++)
             {
@@ -163,11 +186,10 @@ namespace Week1CodeChallenge
             Console.WriteLine("Number of special characters: " + specialCharacterCounter);
 
 
-
-            //Begin process to disply longest word, second longest, and shortest
-            //create array of special character that might be attached to the end of words
+            //***Begin process to disply longest word, second longest, and shortest
+            //create array of special characters that might be attached to the end of words, for removing
             string[] specialCharacters = {",", ".", "!", "?"};
-            //remember that wordCountList is original input string convertered to a List, as done above
+            //remember that wordCountList is original input string convertered to a List, done above
             //Remove any special characters from each word which would effect its true length (being extra nerdy here)
             for (int i = 0; i < wordCountList.Count; i++)
 			{
@@ -178,10 +200,10 @@ namespace Week1CodeChallenge
 			}
             //Create a new List to hold words as they are rearranged by word length
             List<string> wordLengthOrder = new List<string>();
-            //need to add 1 empty index for loop to run
-            wordLengthOrder.Add("");
-            //Loop through original List, if its current word length is longer than first word in wordLength order then insert it, if not then check next index in wordLengthOrder.  When spot is found then exit j loop.  
-            //****saw the .OrderBy method but could not figure out****
+            //need to add 1 empty index for loop to run (need to run one index past final word), removed after loop
+            wordLengthOrder.Add(string.Empty);
+            //Loop through original wordCountList, if its current word length is longer than first word in wordLength order then insert it, if not then check next index in wordLengthOrder.  When spot is found then exit j loop.  
+            //****saw the List.OrderBy method but could not figure it out****
             for (int i = 0; i < wordCountList.Count; i++)
             {
                 for (int j = 0; j <wordLengthOrder.Count; j++)
@@ -201,18 +223,24 @@ namespace Week1CodeChallenge
             Console.WriteLine("The shortest word is: " + wordLengthOrder[wordLengthOrder.Count - 1]);
         }
 
-
-
+        /// <summary>
+        /// Check to see if a positive number is prime, if so return true
+        /// </summary>
+        /// <param name="number">any integer greater than 0</param>
+        /// <returns>true if prime</returns>
         public static bool IsPrime(int number)
         {
+            //check if number is greater than zero
             if (number > 0)
             {
+                //1 and 2 are both prime, loop only useful for numbers greater than 2
                 if (number == 1 || number == 2)
                 {
                     return true;
                 }
                 if (number > 2)
                 {
+                    //check to see if number is divisible by any number between 2 and (number-1)
                     for (int i = 2; i < number; i++)
                     {
                         if (number % i == 0)
@@ -225,16 +253,47 @@ namespace Week1CodeChallenge
             }
             else
             {
+                //if number not greater than 0
                 return false;
             }
             
         }
 
-
-
+        /// <summary>
+        /// Insert a dash ('-') between each pair of odd numbers
+        /// </summary>
+        /// <param name="number">number to process</param>
+        /// <returns>original number with dashes between odd numbers</returns>
         public static string DashInsert(int number)
         {
-            return string.Empty;
+            //convert input number to a string for looping through
+            string numString = number.ToString();
+            //creat empty string for inputing new values with dashes
+            string dashNumString = string.Empty;
+            
+            for (int i = 0; i < numString.Length; i++)
+            {
+                //add number at current index to new string
+                dashNumString += numString[i].ToString();
+                //do not process code on final index of original string
+                if (i < numString.Length - 1)
+                {
+                    //if current index is odd and...
+                    if ((int.Parse(numString[i].ToString()) % 2) != 0)
+                    {
+                        //...if number at next index is also odd then...
+                        if ((int.Parse(numString[i + 1].ToString()) % 2) != 0)
+                        {
+                            //...add a dash to the new string
+                            dashNumString += "-";
+                        }
+                    }
+                }
+            }
+            //return new string with dashes inserted
+            return dashNumString;
         }
+
+
     }
 }
