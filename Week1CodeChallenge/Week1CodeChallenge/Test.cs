@@ -37,6 +37,8 @@ namespace Week1CodeChallenge
             StringAssert.AreEqualIgnoringCase("FizzBuzz", Program.FizzBuzz(15));
         }
         [Test, Timeout(500)]
+
+
         public void testYodaizerTwoWords()
         {
             StringAssert.AreEqualIgnoringCase("challenge code", Program.Yodaizer("code challenge"));
@@ -46,13 +48,14 @@ namespace Week1CodeChallenge
         {
             StringAssert.AreEqualIgnoringCase("full pot coffee the keep", Program.Yodaizer("Keep the coffee pot full"));
         }
-        [Ignore]
         [Test, Timeout(500)]
         public void testYodaizerBonus()
         {
             StringAssert.AreEqualIgnoringCase("code, I like", Program.Yodaizer("I like code"));
         }
         [Test, Timeout(500)]
+
+
         public void testIsPrime1()
         {
             Assert.IsTrue(Program.IsPrime(1));
@@ -78,6 +81,8 @@ namespace Week1CodeChallenge
             Assert.IsFalse(Program.IsPrime(9));
         }
         [Test, Timeout(500)]
+
+
         public void testDashInsert1()
         {
             StringAssert.AreEqualIgnoringCase("867-5-309", Program.DashInsert(8675309));
