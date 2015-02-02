@@ -221,6 +221,23 @@ namespace Week1CodeChallenge
             Console.WriteLine("The longest word is: " + wordLengthOrder[0]);
             Console.WriteLine("The second longest word is: " + wordLengthOrder[1]);
             Console.WriteLine("The shortest word is: " + wordLengthOrder[wordLengthOrder.Count - 1]);
+
+            /*  //******* NOW USING "ORDER BY DESCENDING" ****************
+
+            //Create a new List to hold words as they are rearranged by word length
+            List<string> wordLengthOrder = new List<string>();
+            //order words from original "wordCountList" by length and put into "var orderedWords"
+            var orderedWords = wordCountList.OrderByDescending(c => c.Length);
+            //add each word (now in order by length) into the wordLengthOrder List we created
+            foreach (var item in orderedWords)
+            {
+                wordLengthOrder.Add(item);
+            }
+            //print to screen the longest, second longest, and shortest
+            Console.WriteLine("The longest word is: " + wordLengthOrder[0]);
+            Console.WriteLine("The second longest word is: " + wordLengthOrder[1]);
+            Console.WriteLine("The shortest word is: " + wordLengthOrder[wordLengthOrder.Count - 1]);
+            */
         }
 
         /// <summary>
