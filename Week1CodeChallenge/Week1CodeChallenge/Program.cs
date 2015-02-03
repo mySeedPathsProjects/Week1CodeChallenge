@@ -117,6 +117,9 @@ namespace Week1CodeChallenge
             }
             //return orginal text now reversed (w/ empty space at end of string removed by Trim)
             return reverseText.Trim();
+
+   //****OR SKIP FOR LOOP AND USE THE FOLLOWING AFTER YOU REVERSED THE TEXT AS ABOVE (WOULD GET RID OF "reverseText" string)  *****
+            //return string.Join(" ", stringWords);
         }
 
         /// <summary>
@@ -133,15 +136,19 @@ namespace Week1CodeChallenge
         /// <param name="input">stats</param>
         public static void TextStats(string input)
         {
-            //***First output the original string
+         //***First output the original string
             Console.WriteLine(input);
 
-            //***Output number of characters
+         //***Output number of characters
             Console.WriteLine("Number of characters: " + input.Length);
 
-            //***Output number of words
+
+         //***Output number of words
             //split up input string and convert to a List of words
             List<string> wordCountList = input.Split(' ').ToList();
+        //****OR TRY THIS  
+            //int numberOfWords = input.Split(' ').Length;
+        //HOWEVER WOULD STILL HAVE THE ISSUE THAT NEEDED RESOLVING JUST BELOW:
             //Remove any empty indexes in List that came from a double space (from between sentences in original text)  *******
             for (int i = 0; i < wordCountList.Count; i++)
             {
@@ -149,7 +156,8 @@ namespace Week1CodeChallenge
             }
             Console.WriteLine("Number of words: " + wordCountList.Count);
 
-            //***Output number of vowels
+
+         //***Output number of vowels
             int vowelCounter = 0;
             for (int i = 0; i < input.Length; i++)
             {
@@ -161,7 +169,8 @@ namespace Week1CodeChallenge
             }
             Console.WriteLine("Number of vowels: " + vowelCounter);
 
-            //***Output number of consonants
+
+         //***Output number of consonants
             int consonantCounter = 0;
             for (int i = 0; i < input.Length; i++)
             {
@@ -173,7 +182,8 @@ namespace Week1CodeChallenge
             }
             Console.WriteLine("Number of consonants: " + consonantCounter);
 
-            //***Output number of special characters
+
+         //***Output number of special characters
             int specialCharacterCounter = 0;
             for (int i = 0; i < input.Length; i++)
             {
@@ -186,7 +196,7 @@ namespace Week1CodeChallenge
             Console.WriteLine("Number of special characters: " + specialCharacterCounter);
 
 
-            //***Begin process to disply longest word, second longest, and shortest
+         //***Begin process to disply longest word, second longest, and shortest
             //create array of special characters that might be attached to the end of words, for removing
             string[] specialCharacters = {",", ".", "!", "?"};
             //remember that wordCountList is original input string convertered to a List, done above
@@ -222,7 +232,8 @@ namespace Week1CodeChallenge
             Console.WriteLine("The second longest word is: " + wordLengthOrder[1]);
             Console.WriteLine("The shortest word is: " + wordLengthOrder[wordLengthOrder.Count - 1]);
 
-            /*  //******* NOW USING "ORDER BY DESCENDING" ****************
+
+    /*  //******* NOW USING "ORDER BY DESCENDING" ****************
 
             //Create a new List to hold words as they are rearranged by word length
             List<string> wordLengthOrder = new List<string>();
@@ -247,11 +258,11 @@ namespace Week1CodeChallenge
         /// <returns>true if prime</returns>
         public static bool IsPrime(int number)
         {
-            //check if number is greater than zero
-            if (number > 0)
+            //check if number is greater than 1 (1 is not a prime)
+            if (number > 1)
             {
-                //1 and 2 are both prime, loop only useful for numbers greater than 2
-                if (number == 1 || number == 2)
+                //2 is prime, loop only useful for numbers greater than 2
+                if (number == 2)
                 {
                     return true;
                 }
@@ -270,7 +281,7 @@ namespace Week1CodeChallenge
             }
             else
             {
-                //if number not greater than 0
+                //if number not greater than 1
                 return false;
             }
             

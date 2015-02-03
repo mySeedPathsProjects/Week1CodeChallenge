@@ -58,7 +58,7 @@ namespace Week1CodeChallenge
 
         public void testIsPrime1()
         {
-            Assert.IsTrue(Program.IsPrime(1));
+            Assert.IsFalse(Program.IsPrime(1));
         }
         [Test, Timeout(500)]
         public void testIsPrime4()
